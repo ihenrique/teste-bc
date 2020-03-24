@@ -1,9 +1,15 @@
 {
   "name": "teste-bc",
   "version": "1.0.0",
-  "description": "Teste front-end para o site BoaConsulta.com",
+  "description": "Teste Front-end BoaConsulta.com",
   "author": "Ivan Henrique",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3000"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -11,7 +17,11 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "@nuxtjs/style-resources": "^1.0.0",
+    "node-sass": "^4.13.1",
+    "nuxt": "^2.0.0",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "sass-loader": "^8.0.1"
   },
   "devDependencies": {}
 }

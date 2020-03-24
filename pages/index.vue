@@ -38,7 +38,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+*{
+  @include only_mobile{
+    border:1px solid red;
+  }
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;

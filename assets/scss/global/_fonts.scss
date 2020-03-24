@@ -1,0 +1,35 @@
+$font_dir: '../../static/fonts/';
+
+
+@mixin fontface( $family, $file, $dir: $font_dir ){
+    font-family: $family;
+    src: url( #{ $font_dir + $file });
+    src: url( #{ $font_dir + $file }) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    @include fontface( 'primary-regular', 'OpenSans-Regular.ttf' )
+}
+
+@font-face {
+    @include fontface( 'primary-bold', 'OpenSans-Bold.ttf' )
+}
+
+@font-face {
+    @include fontface( 'primary-light', 'OpenSans-Light.ttf' )
+}
+
+// @font-face {
+//     @include fontface( 'secondary-regular', 'RobotoSlab-Regular.ttf' )
+// }
+
+@font-face {
+    @include fontface( 'secondary-bold', 'RobotoSlab-Bold.ttf' )
+}
+
+// @font-face {
+//     @include fontface( 'secondary-light', 'RobotoSlab-Light.ttf' )
+// }
