@@ -11,25 +11,13 @@ $font_dir: '../../static/fonts/';
 }
 
 @font-face {
-    @include fontface( 'primary-regular', 'OpenSans-Regular.ttf' )
+    @include fontface( 'regular', 'CircularStd-Book.ttf' )
 }
 
 @font-face {
-    @include fontface( 'primary-bold', 'OpenSans-Bold.ttf' )
+    @include fontface( 'bold', 'CircularStd-Bold.ttf' )
 }
 
 @font-face {
-    @include fontface( 'primary-light', 'OpenSans-Light.ttf' )
+    @include fontface( 'medium', 'CircularStd-Medium.ttf' )
 }
-
-// @font-face {
-//     @include fontface( 'secondary-regular', 'RobotoSlab-Regular.ttf' )
-// }
-
-@font-face {
-    @include fontface( 'secondary-bold', 'RobotoSlab-Bold.ttf' )
-}
-
-// @font-face {
-//     @include fontface( 'secondary-light', 'RobotoSlab-Light.ttf' )
-// }
