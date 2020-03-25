@@ -1,15 +1,18 @@
 <template>
   <div class="container">
-    <Header></Header>
+    <Header />
+    <TeamMembers />
   </div>
 </template>
 
 <script>
 import Header from '~/components/header.vue'
+import TeamMembers from '~/components/TeamMembers.vue'
 
 export default {
   components: {
-    Header
+    Header,
+    TeamMembers
   }
 }
 </script>

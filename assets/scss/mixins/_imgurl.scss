@@ -12,5 +12,5 @@
         // caso receba paremetro folter adiciona na construcao da url
         $folder: $folder + '/'
     }
-    @return  ( url( '../imgs/' + $folder + $img  ) );
+    @return  ( url( '../static/imgs/' + $folder + $img  ) );
 }

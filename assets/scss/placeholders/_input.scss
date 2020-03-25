@@ -1,0 +1,19 @@
+%input-text{
+    width: 100%;
+    padding: 0 16px;
+    line-height: 40px;
+    border: 2px solid #eaeaea;
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-family: $regular;
+    font-style: italic;
+    color: $ghost-gray;
+    opacity: 0.45;
+
+    &:focus{
+        border-color: #d9dfe4;
+        outline: none;
+        opacity: 1;
+    }
+}

@@ -48,7 +48,8 @@ export default {
   styleResources: {
     scss: [ 
       '@/assets/scss/vars.scss',
-      '@/assets/scss/mixins.scss'
+      '@/assets/scss/mixins.scss',
+      '@/assets/scss/placeholders.scss'
     ],
   },
   /*

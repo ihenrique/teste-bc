@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <button class="header__btn-menu"> 
-            <i class="icon"> 
+            <i class="icon" role="img"> 
                 <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <title> 
                         Expandir Menu 
@@ -32,7 +32,7 @@
                     Randall Cohen
                 </figcaption>
             </figure>
-            <i class="icon">
+            <i class="icon" role="img">
                 <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <title>
                         Opções do Usuário
@@ -88,21 +88,7 @@
     }
 
     input{
-        width: 100%;
-        padding: 0 16px;
-        line-height: 40px;
-        border: 2px solid #eaeaea;
-        box-sizing: border-box;
-        border-radius: 3px;
-        box-sizing: border-box;
-        font-family: $regular;
-        font-style: italic;
-        color: $ghost-gray;
-        opacity: 0.45;
-
-        &:focus{
-            opacity: 1;
-        }
+        @extend %input-text;
     }
 }
 
