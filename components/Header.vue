@@ -51,6 +51,10 @@
     background-color: $white;
     height: 72px;
     padding: 0 24px;
+
+    @include only_mobile{
+        justify-content: space-between;
+    }
 }
 
 .header__btn-menu{
