@@ -54,11 +54,9 @@
                     <div class="card__body">
                         <figure class="card__avatar">
                             <img src="https://placedog.net/400/400" alt="Member Name">
-                            <figcaption>
-                                <h3 class="card__name"> Marie Walters </h3>
-                                <span class="card__email"> mariewalters@gmail.com </span>
-                            </figcaption>
                         </figure>
+                        <h3 class="card__name"> Marie Walters </h3>
+                        <span class="card__email"> mariewalters@gmail.com </span>
                     </div>
                     <footer class="card__footer">
                         <a href="#assign-member" class="assign-btn"> Assign </a>
@@ -154,10 +152,16 @@
 }
 
 .card{
+    display: flex;
+    flex-direction: column;
     background-color: $white;
     border-radius: 5px;
     padding: 25px 15px 15px;
     text-align: center;
+}
+
+.card__body{
+    height: 100%;
 }
 
 .card__title{
@@ -166,7 +170,28 @@
     color: $ghost-gray;
 }
 
+.card__name{
+    font-family: $regular;
+    font-size: 18px;
+    line-height: 23px;
+    color: $mirage;
+    margin-bottom: 15px;
+}
+
+.card__email{
+    font-family: $regular;
+    font-size: 14px;
+    line-height: 18px;
+    color: $ghost-gray;
+}
+
 .card__avatar{
+    margin: 0 auto 30px;
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    overflow: hidden;
+
     img{
         max-width: 100%;
     }
@@ -212,4 +237,45 @@
     }
 }
 
+.card__footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.favorite-btn{
+    margin-left: auto;
+    display: block;
+    height: 25px;
+    width: 25px;
+    text-indent: -99999px;
+    background: imgurl( 'heart--blank.png' ) center center no-repeat;
+}
+
+.assign-btn,
+.view-btn{
+    @extend %btn--ghost;
+    max-width: calc( 50% - 15px );
+
+    &:before{
+        display: inline-block;
+        content: '';
+        height: 24px;
+        width: 24px;
+        vertical-align: middle;
+        margin-right: 15px;
+        margin-left: -10px;
+    }
+}
+
+.assign-btn{
+    &::before{
+        background: imgurl( 'to-do.png' ) center center no-repeat;
+    }
+}
+
+.view-btn{
+    &::before{
+        background: imgurl( 'preview.png' ) center center no-repeat;
+    }
+}
 </style>

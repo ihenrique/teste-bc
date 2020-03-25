@@ -18,3 +18,10 @@
     color: $white;
     background-color: $dodger-blue;
 }
+
+%btn--ghost{
+    @extend %btn;
+
+    color: $ghost-gray;
+    background-color: transparent;
+}
