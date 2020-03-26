@@ -48,7 +48,7 @@
                     </div>
                 </div>
 
-                <template v-if="members">
+                <template v-if="filteredMembers.length > 0">
                     <div class="card" v-for="member in filteredMembers" :key="member.id">
                         <div class="card__nav">
                             <a href="#favorite" class="favorite-btn"> Favorite Member </a>
@@ -76,6 +76,8 @@
     </section>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 export default {
     name: 'TeamMembers',
     props: {
@@ -86,7 +88,6 @@ export default {
     },
     data: function() {
         return{
-            search: '',
             newMember: {
                 name: '',
                 email: '',
@@ -94,10 +95,17 @@ export default {
         }
     },
     computed: {
-        filteredMembers() {
-        return !this.search.length 
-            ? this.members 
-            : this.members.filter(item => members.name.toLowerCase().includes(this.members.toLowerCase().trim()))
+        search(){
+            return this.$store.state.search.term
+        },
+        filteredMembers(data) {
+            let app = this
+
+            if( app.search.length > 0 ){
+                return app.members.filter( member => member.name.toLowerCase().includes( app.search.toLowerCase().trim()))
+            }
+
+            return data.members
         }
     },
     methods: {
@@ -193,6 +201,7 @@ export default {
 }
 
 .members__list{
+    position: relative;
     margin-top: 36px;
     grid-gap: 32px;
 
@@ -317,6 +326,16 @@ export default {
 .view-btn{
     @extend %btn--ghost;
     max-width: calc( 50% - 15px );
+    transition: all .4s ease-in;
+
+    &:hover{
+        color: $white;
+        background-color: $dodger-blue;
+
+        &::before{
+            filter: brightness(3);
+        }
+    }
 
     &:before{
         display: inline-block;
@@ -338,6 +357,29 @@ export default {
 .view-btn{
     &::before{
         background: imgurl( 'preview.png' ) center center no-repeat;
+    }
+}
+
+.error-alert{
+    padding: 32px;
+    background-color: $white;
+
+    p{
+        color: $dodger-blue;
+        font-size: 18px;
+        font-family: $bold;
+    }
+
+    @include only_tablet-p{
+        position: absolute;
+        right: 0;
+        left: calc( 33.33333% + 10px );
+    }
+
+    @include tablet-l_and_desk{
+        position: absolute;
+        right: 0;
+        left: calc( 25% + 10px );
     }
 }
 </style>

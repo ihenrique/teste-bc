@@ -21,8 +21,8 @@
             </a>
         </h1>
 
-        <form class="search">
-            <input autocomplete="off" placeholder="Search..." type="search" value="">
+        <form class="search" @submit.prevent>
+            <input autocomplete="off" placeholder="Search..." type="search" value="" @input="UpdateSearch">
         </form>
 
         <button class="user-menu">
@@ -43,6 +43,27 @@
         </button>
     </header>
 </template>
+<script>
+import { mapState } from 'vuex'
+
+export default {
+    name: 'Header',
+    computed: mapState([
+        'search'
+    ]),
+    methods: {
+        UpdateSearch (e){
+            let app = this
+            const term = e.target.value
+            if( term.length > 3 ){
+                app.$store.commit( 'search/update' , e.target.value )
+            }else{
+                app.$store.commit( 'search/update' , '' )
+            }
+        }
+    }
+}
+</script>
 <style lang="scss" scoped>
 
 .header{
