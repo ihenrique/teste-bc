@@ -34,39 +34,85 @@
                         <h3 class="card__title"> Add New Member </h3>
                     </header>
                     <div class="card__body">
-                        <form class="card__form" action="">
+                        <form class="card__form" action="" @submit.prevent="add_member">
                             <fieldset class="upload">
                                 <label for="upload_avatar"> Member Avatar </label>
                                 <input id="upload_avatar" type="file" name="avatar" placeholder="Member Avatar">
                             </fieldset>
 
-                            <input type="text" placeholder="Member Name" name="member_name">
-                            <input type="text" placeholder="Member Email" name="member_email">
+                            <input type="text" placeholder="Member Name" name="member_name" v-model="newMember.name">
+                            <input type="text" placeholder="Member Email" name="member_email"
+                            v-model="newMember.email">
                             <input type="submit" value="Add" name="send">
                         </form>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card__nav">
-                        <a href="#favorite" class="favorite-btn"> Favorite Member </a>
+                <template v-if="members">
+                    <div class="card" v-for="member in filteredMembers" :key="member.id">
+                        <div class="card__nav">
+                            <a href="#favorite" class="favorite-btn"> Favorite Member </a>
+                        </div>
+                        <div class="card__body">
+                            <figure class="card__avatar">
+                                <img :src="'https://placedog.net/400/400?id=' + member.id" alt="Member Name">
+                            </figure>
+                            <h3 class="card__name"> {{ member.name }} </h3>
+                            <span class="card__email"> {{ member.email }}  </span>
+                        </div>
+                        <footer class="card__footer">
+                            <a href="#assign-member" class="assign-btn"> Assign </a>
+                            <a href="#view-member" class="view-btn"> View </a>
+                        </footer>
                     </div>
-                    <div class="card__body">
-                        <figure class="card__avatar">
-                            <img src="https://placedog.net/400/400" alt="Member Name">
-                        </figure>
-                        <h3 class="card__name"> Marie Walters </h3>
-                        <span class="card__email"> mariewalters@gmail.com </span>
+                </template>
+                <template v-else>
+                    <div class="error-alert">
+                        <p>Nenhum membro encontrado</p>
                     </div>
-                    <footer class="card__footer">
-                        <a href="#assign-member" class="assign-btn"> Assign </a>
-                        <a href="#view-member" class="view-btn"> View </a>
-                    </footer>
-                </div>
+                </template>
             </div>
         </div>
     </section>
 </template>
+<script>
+export default {
+    name: 'TeamMembers',
+    props: {
+      members:{
+          type: Array,
+          required: false
+      },
+    },
+    data: function() {
+        return{
+            search: '',
+            newMember: {
+                name: '',
+                email: '',
+            }
+        }
+    },
+    computed: {
+        filteredMembers() {
+        return !this.search.length 
+            ? this.members 
+            : this.members.filter(item => members.name.toLowerCase().includes(this.members.toLowerCase().trim()))
+        }
+    },
+    methods: {
+        add_member: function(e){
+            // Add a new member to TeamMebers list
+
+            this.members.push( {
+                name: this.newMember.name,
+                email: this.newMember.email,
+                id: Math.floor( Math.random() * 100) + 1
+            } )
+        }
+    }
+}
+</script>
 <style lang="scss" scoped>
 
 .members__limit{
@@ -85,6 +131,8 @@
     .filter{
         @include only_mobile{
             width: 100%;
+            margin-top: 30px;
+            justify-content: space-between;
         }
 
         @include tablet_and_desk{
@@ -146,9 +194,17 @@
 
 .members__list{
     margin-top: 36px;
-    display: grid;
-    grid-template-columns: repeat( 4 , 1fr );
     grid-gap: 32px;
+
+    @include only_tablet-p{
+        display: grid;
+        grid-template-columns: repeat( 3 , 1fr );
+    }
+
+    @include tablet-l_and_desk{
+        display: grid;
+        grid-template-columns: repeat( 4 , 1fr );
+    }
 }
 
 .card{
@@ -158,10 +214,16 @@
     border-radius: 5px;
     padding: 25px 15px 15px;
     text-align: center;
+
+    @include only_mobile{
+        margin: 0 auto 32px;
+        max-width: 290px;
+    }
 }
 
 .card__body{
     height: 100%;
+    min-height: 255px;
 }
 
 .card__title{
@@ -232,8 +294,8 @@
 
     input[type="submit"]{
         @extend %btn--blue;
-        max-width: 150px;
         margin: auto;
+        max-width: 200px;
     }
 }
 
